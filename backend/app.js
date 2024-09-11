@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 // Configuração do Sequelize
 const db = require('./config/database');
@@ -11,12 +12,15 @@ db.authenticate()
 
 // Middlewares
 app.use(express.json());
+app.use(cors());
 
 // Importar rotas
-const produtosRoutes = require('./rotas/rotasprodutos');
+const clientesRoutes = require('./rotas/rotasclientes');
+const jogosRoutes = require('./rotas/rotasjogos');
 
 // Usar rotas
-app.use('/api', produtosRoutes);
+app.use(clientesRoutes);
+app.use(jogosRoutes);
 
 // Iniciar o servidor
 const PORT = process.env.PORT || 3000;
