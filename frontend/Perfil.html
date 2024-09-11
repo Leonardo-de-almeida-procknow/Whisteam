@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu perfil</title>
+    <style>
+        body {
+            background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(82, 82, 82, 1) 100%);
+            width: 100vw;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.2%;
+            width: 100vw;
+        }
+        h2 {
+            color: white;
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf');
+        }
+
+        p {
+            color: white;
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf');
+        }
+
+        /* Profile Page Specific Styles */
+        .profile-details {
+            text-align: center;
+            background-color: rgba(78, 78, 78, 0.75);
+            border-radius: 15px;
+            display: block
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            
+            img{
+                width: 200px;
+                height: 200px; 
+            }
+        }
+
+        .profile-info {
+            text-align: left;
+        }
+
+        .profile-actions {
+            text-align: center;
+            margin-top: 30px;
+            background-color: rgba(78, 78, 78, 0.75);
+            border-radius: 15px;
+            padding: 20px;
+            
+            button{
+                background-color: gray;
+                color: azure;
+            }
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <main>
+        <div class="menu" style="background-color: black;position: relative; ">
+            <img src="images/Capturar.JPG">
+            <div class="menu-toggle">
+                <img style="margin-right: 25px;" src="images/menu-hamburguer (2).png" alt="Menu" id="menuIcon">
+            </div>
+        </div>
+        <section class="profile-details">
+            <h2>Seu perfil</h2>
+            <div class="profile-image">
+                <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/2387693-icone-do-perfil-do-usuario-vetor.jpg" />
+                </div>
+            <div class="profile-info">
+                <p>Nome de usuário: YourUsername</p>
+                <p>Email: you@example.com</p>
+                <p>Data de nascimento</p>
+            </div>
+        </section>
+
+        <section class="profile-actions">
+            <h2>Alterações do perfil</h2>
+            <button>Editar Perfil</button>
+            <button>Mudar senha</button>
+            <button>Deletar conta</button>
+        </section>
+    </main>
+
+    <footer>
+        </footer>
+
+    <script>
+        // JavaScript code to fetch and display user data
+        function fetchUserData() {
+            // Make an API call to get user data
+            fetch('/api/user')
+                .then(response => response.json())
+                .then(userData => {
+                    // Update the profile information on the page
+                    document.getElementById("username").textContent = userData.username;
+                    document.getElementById("email").textContent = userData.email;
+                    document.getElementById("joined").textContent = userData.joined;
+
+                    // Update the user library
+                    const librarySection = document.getElementById("user-library");
+                    librarySection.innerHTML = userData.library.map(game => `<p>${game.title}</p>`).join('');
+                })
+                .catch(error => {
+                    console.error("Error fetching user data:", error);
+                });
+        }
+
+        // Call the function to fetch user data when the page loads
+        fetchUserData();
+    </script>
+</body>
+</html>

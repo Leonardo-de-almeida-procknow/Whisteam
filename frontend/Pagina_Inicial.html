@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pagina inicial</title>
     <style>
         * {
             padding: 0;
@@ -173,11 +173,18 @@
             color: white;
             transition: right 0.3s ease; /* Transição suave */
             padding: 20px;
-            z-index: 1;
+            z-index:    1;
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf');
+            font-weight: lighter;
+        }
+
+        .sidebar h1 {
+            margin-top: 60px;
         }
 
         .sidebar h2 {
-            margin-top: 60px;
+            margin-top: 30px;
         }
 
         .sidebar ul {
@@ -218,12 +225,29 @@
 <body>
     <div class="sidebar" id="sidebar">
         <button class="close-btn" id="closeBtn"><img style="margin-right: 25px;" src="images/menu-hamburguer (2).png"></button>
-        <h2>Menu Lateral</h2>
+        <h1>Menu Lateral</h1>
         <ul>
+            <h2>Usuário</h2>
             <li><a href="Logar.html">Logar/Registrar</a></li>
-            <li><a href="#">Sobre</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Contato</a></li>
+            <li><a href="biblioteca.html">Biblioteca</a></li>
+            <li><a href="Perfil.html">Perfil</a></li>
+
+            <h2>Categorias</h2>
+            <li><a href="#">Ação</a></li>
+            <li><a href="#">Aventura</a></li>
+            <li><a href="#">RPG</a></li>
+            <li><a href="#">Estratégia</a></li>
+            <li><a href="#">Simulação</a></li>
+            <li><a href="#">Esportes</a></li>
+            <li><a href="#">Corrida</a></li>
+            <li><a href="#">Puzzle</a></li>
+            <li><a href="#">Survival Horror</a></li>
+            <li><a href="#">Plataforma</a></li>
+            <li><a href="#">MOBA</a></li>
+            <li><a href="#">Battle Royale</a></li>
+            <li><a href="#">Ritmo</a></li>
+            <li><a href="#">Visual Novel</a></li>
+
         </ul>
     </div>
     <div class="menu" style="background-color: black;position: relative; ">
