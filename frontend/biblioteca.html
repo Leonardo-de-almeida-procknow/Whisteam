@@ -6,10 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        h1{
+            color: rgb(51, 51, 51);
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf');
+        }
+        h2{
+            color: white;
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf');
+        }
+        h3{
+            color: rgb(51, 51, 51);
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf');
+        }
+        a{
+            color: white;
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf');
+        }
+        p{
+            color: white;
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf');
+        }
+        @font-face {
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf')
+        }
         .menu {
             display: flex;
             justify-content: space-between;
-            padding: 1%;
+            padding: 0.2%;
+            width: 100vw;
         }
 
         body {
@@ -24,7 +54,7 @@
         .biblioteca_acessorapido {
             background-color: rgba(0, 0, 0, 0.6);
             width: 15%;
-            height: 88.4vh;
+            height: 100vh;
             padding: 0%;
             color: white;
             overflow: auto;
@@ -99,17 +129,110 @@
             display: flex;
             }
         }
-        
+         /* Estilo do ícone de menu */
+         .menu-toggle {
+            position: absolute;
+            top: 8px;
+            right: 20px;
+        }
+
+        .menu-toggle img {
+            cursor: pointer;
+        }
+
+        /* Estilo do menu lateral */
+        .sidebar {
+            height: 100%;
+            width: 250px; /* Largura do menu lateral */
+            position: fixed;
+            top: 0;
+            right: -300px; /* Inicialmente fora da tela */
+            background-color: #000000;
+            color: white;
+            transition: right 0.3s ease; /* Transição suave */
+            padding: 20px;
+            z-index:    1;
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf');
+            font-weight: lighter;
+        }
+
+        .sidebar h1 {
+            margin-top: 60px;
+        }
+
+        .sidebar h2 {
+            margin-top: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            background: none;
+            border: none;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            margin-left: 60%;
+            z-index: 2;
+        }
+
+        /* Mostrar o menu lateral */
+        .sidebar.show {
+            right: 0;
+        }
     </style>
 </head>
 
 <body>
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="closeBtn"><img style="margin-right: 25px;" src="images/menu-hamburguer (2).png"></button>
+        <h1 style="color: white;">Menu Lateral</h1>
+        <ul>
+            <h2>Usuário</h2>
+            <li><a href="Logar.html">Logar/Registrar</a></li>
+            <li><a href="biblioteca.html">Biblioteca</a></li>
+            <li><a href="Perfil.html">Perfil</a></li>
 
-    <div class="menu" style="background-color: black;position: relative; ">
-        <img src="Capturar.JPG">
-        <img src="menu-hamburguer (2).png">
+            <h2>Categorias</h2>
+            <li><a href="#">Ação</a></li>
+            <li><a href="#">Aventura</a></li>
+            <li><a href="#">RPG</a></li>
+            <li><a href="#">Estratégia</a></li>
+            <li><a href="#">Simulação</a></li>
+            <li><a href="#">Esportes</a></li>
+            <li><a href="#">Corrida</a></li>
+            <li><a href="#">Puzzle</a></li>
+            <li><a href="#">Survival Horror</a></li>
+            <li><a href="#">Plataforma</a></li>
+            <li><a href="#">MOBA</a></li>
+            <li><a href="#">Battle Royale</a></li>
+            <li><a href="#">Ritmo</a></li>
+            <li><a href="#">Visual Novel</a></li>
+
+        </ul>
     </div>
-
+    <div class="menu" style="background-color: black;position: relative; ">
+        <a href="Pagina_Inicial.html"><img src="images/Capturar.JPG"></a>
+        <div class="menu-toggle">
+            <img style="margin-right: 25px;" src="images/menu-hamburguer (2).png" alt="Menu" id="menuIcon">
+        </div>
+    </div>
     <div class="principal">
         <div class="biblioteca_acessorapido">
             <h2 style="margin-left: 10px;">Biblioteca</h2>
@@ -222,5 +345,13 @@
     </div>
 
 </body>
+<script>
+     document.getElementById('menuIcon').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('show');
+        });
 
+        document.getElementById('closeBtn').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('show');
+        });
+</script>
 </html>
