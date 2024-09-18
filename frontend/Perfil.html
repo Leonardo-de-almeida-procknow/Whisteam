@@ -13,6 +13,8 @@
             background-attachment: fixed;
             overflow-x: hidden;
             overflow-y: scroll;
+            padding: 0;
+            margin: 0;
         }
         .menu {
             display: flex;
@@ -38,6 +40,7 @@
             background-color: rgba(78, 78, 78, 0.75);
             border-radius: 15px;
             display: block
+            
         }
 
         .profile-image {
@@ -69,17 +72,111 @@
             }
         }
         
+         /* Estilo do ícone de menu */
+         .menu-toggle {
+            position: absolute;
+            top: 8px;
+            right: 20px;
+        }
 
+        .menu-toggle img {
+            cursor: pointer;
+        }
+
+        /* Estilo do menu lateral */
+        .sidebar {
+            height: 100%;
+            width: 250px; /* Largura do menu lateral */
+            position: fixed;
+            top: 0;
+            right: -290px; /* Inicialmente fora da tela */
+            background-color: #000000;
+            color: white;
+            transition: right 0.3s ease; /* Transição suave */
+            padding: 20px;
+            z-index:    1;
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf');
+            font-weight: lighter;
+        }
+
+        .sidebar h1 {
+            margin-top: 60px;
+        }
+
+        .sidebar h2 {
+            margin-top: 30px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            background: none;
+            border: none;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            margin-left: 60%;
+            z-index: 2;
+        }
+
+        /* Mostrar o menu lateral */
+        .sidebar.show {
+            right: 0;
+        }
     </style>
 </head>
 <body>
 
     <main>
+        <div class="sidebar" id="sidebar">
+            <button class="close-btn" id="closeBtn"><img style="margin-right: 25px;" src="images/menu-hamburguer (2).png"></button>
+            <h1>Menu Lateral</h1>
+            <ul>
+                <h2>Usuário</h2>
+                <li><a href="Logar.html">Logar/Registrar</a></li>
+                <li><a href="biblioteca.html">Biblioteca</a></li>
+                <li><a href="Perfil.html">Perfil</a></li>
+    
+                <h2>Categorias</h2>
+                <li><a href="#">Ação</a></li>
+                <li><a href="#">Aventura</a></li>
+                <li><a href="#">RPG</a></li>
+                <li><a href="#">Estratégia</a></li>
+                <li><a href="#">Simulação</a></li>
+                <li><a href="#">Esportes</a></li>
+                <li><a href="#">Corrida</a></li>
+                <li><a href="#">Puzzle</a></li>
+                <li><a href="#">Survival Horror</a></li>
+                <li><a href="#">Plataforma</a></li>
+                <li><a href="#">MOBA</a></li>
+                <li><a href="#">Battle Royale</a></li>
+                <li><a href="#">Ritmo</a></li>
+                <li><a href="#">Visual Novel</a></li>
+    
+            </ul>
+        </div>
         <div class="menu" style="background-color: black;position: relative; ">
             <a href="Pagina_Inicial.html"><img src="images/Capturar.JPG"></a>
             <div class="menu-toggle">
                 <img style="margin-right: 25px;" src="images/menu-hamburguer (2).png" alt="Menu" id="menuIcon">
             </div>
+            <img style="width:40px; height:40px; margin-right: 1430px;margin-top: 15px;" src="images/lupa.png">
         </div>
         <section class="profile-details">
             <h2>Seu perfil</h2>
@@ -127,6 +224,19 @@
 
         // Call the function to fetch user data when the page loads
         fetchUserData();
+        document.addEventListener('DOMContentLoaded', function() {
+        const menuIcon = document.getElementById('menuIcon');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('closeBtn');
+    
+        menuIcon.addEventListener('click', function() {
+            sidebar.classList.add('show');
+        });
+    
+        closeBtn.addEventListener('click', function() {
+            sidebar.classList.remove('show');
+        });
+    });
     </script>
 </body>
 </html>
