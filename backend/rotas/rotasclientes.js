@@ -17,4 +17,7 @@ router.put('/clientes/:id', ClienteController.updateCliente);
 // Rota para deletar um produto
 router.delete('/clientes/:id', ClienteController.deleteCliente);
 
+//rota para entrar em um produto
+router.post('/clientes/login', ClienteController.login)
+
 module.exports = router;
