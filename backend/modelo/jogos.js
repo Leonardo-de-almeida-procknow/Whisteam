@@ -29,6 +29,9 @@ Jogo.init({
     },
     dt_lc: {
         type: DataTypes.DATE
+    },
+    img: {
+        type: DataTypes.TEXT
     }
 }, {
     sequelize,
