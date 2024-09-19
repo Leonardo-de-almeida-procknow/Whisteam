@@ -57,9 +57,13 @@ const JogosController = {
         }
     },
 
-    // Implementação das funções de controle de estoque
-    // registrarEntrada e registrarSaida
-    // ... (a ser implementado)
-};
-
+    pesquisaJogos: async (req, res) => {
+        try {
+            const jogos = await Jogo.findAll()
+            res.send(jogos)
+        } catch (error) {
+            res.status(500).send(error.message);
+        }
+    }
+}
 module.exports = JogosController;

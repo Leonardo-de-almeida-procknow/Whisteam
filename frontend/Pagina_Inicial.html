@@ -269,17 +269,17 @@
         </div>
         <div class="jp2">
             <div class="jogo">
-                <img class="imgjp2" src="images/images (2).jpeg">
+                <img class="imgjp2" src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000060372/e77cbe3c83da8de952bce5bc0f0960092dbc2e08d377f0e082673239322301bb">
                 <div class="nomepreco">
                     <p>Elden Ring:Shadow of the erdtree</p>
-                    <p>250,00R$</p>
+                    <p>65,00R$</p>
                 </div>
             </div>
             <div class="jogo">
-                <img class="imgjp2" src="images/images (2).jpeg">
+                <img class="imgjp2" src="https://cdn1.epicgames.com/1368a7f14c3344bbaededbae528fafed/offer/EGS_DeadCells_MotionTwin_S1-2560x1440-87045359c3856ef941959aeeb00dbc7f.jpg">
                 <div class="nomepreco">
-                    <p>Elden Ring:Shadow of the erdtree</p>
-                    <p>250,00R$</p>
+                    <p>Dead Cells</p>
+                    <p>50,00R$</p>
                 </div>
             </div>
         </div>
@@ -287,38 +287,15 @@
     </div>
    
     <div class="Jogosgratis">
-        <img class="imgfree" src="images/images (2).jpeg">
+        <img class="imgfree" src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000049267/fe7c711c32bb15ecf9c96dac96a7c6818e49d265c28fa59145c0cbf5ebf34055">
         <h2 style="margin-top: 80px;">Jogos grátis<br>da semana</h2>
-        <img class="imgfree" src="images/images (2).jpeg">
+        <img class="imgfree" src="https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000013704/918c0badde3aeba760e2185f382a2402248a1292322cf540fd8d098eeb292e1e">
     </div>
-    <div class="recomendados">
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
+    <div class="recomendados" id="recomendados">
     </div>
 </body>
-<script>document.addEventListener('DOMContentLoaded', function() {
+<script>
+document.addEventListener('DOMContentLoaded', function() {
     const menuIcon = document.getElementById('menuIcon');
     const sidebar = document.getElementById('sidebar');
     const closeBtn = document.getElementById('closeBtn');
@@ -331,6 +308,33 @@
         sidebar.classList.remove('show');
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+            fetch('http://localhost:3000/jogos')
+                .then(response => response.json())
+                .then(jogosBackend => {
+                    const listaJogos = document.getElementById('recomendados');
+                    for(i=0; i<jogosBackend.length; i++){
+                        const jogo = jogosBackend[i]
+                        const cartaoJogo = document.createElement('div');
+                        cartaoJogo.className = 'cartao';
+                        
+                        cartaoJogo.innerHTML = `
+                            <img class="imgrec" src="${jogo.img}" alt="${jogo.nome}">
+                            <p>${jogo.nome}</h2>
+                            <span>R$ ${jogo.preco}</span>
+                        `;
+                        
+                        listaJogos.appendChild(cartaoJogo);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar produtos:', error);
+                });
+        });
+        
+    
+
 </script>
 
 </html>
