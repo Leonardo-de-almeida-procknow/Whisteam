@@ -47,11 +47,4 @@ CREATE TABLE IF NOT EXISTS `jogos` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Copiando dados para a tabela whisteambd.jogos: ~0 rows (aproximadamente)
-INSERT INTO `jogos` (`id`, `nome`, `cria_destr`, `desc`, `avali`, `preco`, `ida_rec`, `dt_lc`) VALUES
-	(1, 'Fortnite', 'Epic Games', 'jogo battle royale', 3.900000, 10.000000, '', '0000-00-00');
-
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+INSERT INTO `jogos` (`id`, `nome`, `cria_destr`, `desc`, `avali`, `preco`, `ida_rec`, `dt_lc`) VALUESclientes

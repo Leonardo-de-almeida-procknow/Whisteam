@@ -11,21 +11,25 @@
             margin: 0;
             box-sizing: border-box;
         }
-        h2{
+
+        h2 {
             color: white;
             font-family: "BebasNeueCyrillic";
             src: url('BebasNeueCyrillic.ttf');
         }
-        a{
+
+        a {
             color: white;
             font-family: "BebasNeueCyrillic";
             src: url('BebasNeueCyrillic.ttf');
         }
-        p{
+
+        p {
             color: white;
             font-family: "BebasNeueCyrillic";
             src: url('BebasNeueCyrillic.ttf');
         }
+
         body {
             background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(82, 82, 82, 1) 100%);
             width: 100vw;
@@ -58,8 +62,8 @@
         }
 
         h2 {
-                font-weight: lighter;
-            }
+            font-weight: lighter;
+        }
 
         .resultado {
             background-color: rgba(78, 78, 78, 0.75);
@@ -69,8 +73,10 @@
             border-radius: 15px;
             display: flex;
             justify-content: flex-start;
-            flex-wrap: wrap; /* Permite que os cartões se movam para a linha seguinte */
-            gap: 1%; /* Espaçamento entre os cartões */
+            flex-wrap: wrap;
+            /* Permite que os cartões se movam para a linha seguinte */
+            gap: 1%;
+            /* Espaçamento entre os cartões */
 
             img {
                 width: 384.5px;
@@ -79,12 +85,13 @@
 
             .cartao {
                 padding: 1%;
-                box-sizing: border-box; /* Inclui o padding no cálculo da largura */
+                box-sizing: border-box;
+                /* Inclui o padding no cálculo da largura */
                 font-size: 110%;
             }
         }
 
-        .pesquisa{
+        .pesquisa {
             background-color: rgba(78, 78, 78, 0.75);
             border-radius: 15px;
             padding: 1%;
@@ -92,6 +99,7 @@
             margin-left: 10%;
             margin-top: 1%;
         }
+
         .content {
             padding: 20px;
         }
@@ -110,15 +118,18 @@
         /* Estilo do menu lateral */
         .sidebar {
             height: 100%;
-            width: 250px; /* Largura do menu lateral */
+            width: 250px;
+            /* Largura do menu lateral */
             position: fixed;
             top: 0;
-            right: -250px; /* Inicialmente fora da tela */
+            right: -250px;
+            /* Inicialmente fora da tela */
             background-color: #000000;
             color: white;
-            transition: right 0.3s ease; /* Transição suave */
+            transition: right 0.3s ease;
+            /* Transição suave */
             padding: 20px;
-            z-index:    1;
+            z-index: 1;
             font-family: "BebasNeueCyrillic";
             src: url('BebasNeueCyrillic.ttf');
             font-weight: lighter;
@@ -163,14 +174,13 @@
         .sidebar.show {
             right: 0;
         }
-        
-        
     </style>
 </head>
 
 <body>
     <div class="sidebar" id="sidebar">
-        <button class="close-btn" id="closeBtn"><img style="margin-right: 25px;" src="images/menu-hamburguer (2).png"></button>
+        <button class="close-btn" id="closeBtn"><img style="margin-right: 25px;"
+                src="images/menu-hamburguer (2).png"></button>
         <h1>Menu Lateral</h1>
         <ul>
             <h2>Usuário</h2>
@@ -202,9 +212,9 @@
             <img style="margin-right: 25px;" src="images/menu-hamburguer (2).png" alt="Menu" id="menuIcon">
         </div>
     </div>
-   <div class="pesquisa">
-    <h2>Você pesquisou:</h2>
-   </div>
+    <div class="pesquisa">
+        <h2 id="titulo">Você pesquisou:</h2>
+    </div>
     <div class="resultado">
         <div class="cartao">
             <img class="imgrec" src="images/images (2).jpeg">
@@ -232,19 +242,29 @@
         </div>
     </div>
 </body>
-<script>document.addEventListener('DOMContentLoaded', function() {
-    const menuIcon = document.getElementById('menuIcon');
-    const sidebar = document.getElementById('sidebar');
-    const closeBtn = document.getElementById('closeBtn');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const menuIcon = document.getElementById('menuIcon');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('closeBtn');
 
-    menuIcon.addEventListener('click', function() {
-        sidebar.classList.add('show');
-    });
+        menuIcon.addEventListener('click', function () {
+            sidebar.classList.add('show');
+        });
 
-    closeBtn.addEventListener('click', function() {
-        sidebar.classList.remove('show');
+        closeBtn.addEventListener('click', function () {
+            sidebar.classList.remove('show');
+        });
+
+        const window = window.location
+        const params = window.URLParams()
+        const categoria = params.get('categoria')
+
+        document.getElementById('titulo').innerText = "Você pesquisou: " + categoria
+        fetch('http://localhost:3000/jogos/categorias/' + categoria, {
+
+        })
     });
-});
 </script>
 
 </html>
