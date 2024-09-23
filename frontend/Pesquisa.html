@@ -174,16 +174,15 @@
         .sidebar.show {
             right: 0;
         }
-        input{
+
+        input {
             background-color: #5f5d5d;
             border-radius: 15px;
             width: 100%;
             height: 20px;
             color: #fff;
-            
+
         }
-        
-        
     </style>
 </head>
 
@@ -228,30 +227,7 @@
         <h2 id="titulo">Você pesquisou:</h2>
     </div>
     <div class="resultado">
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
-        <div class="cartao">
-            <img class="imgrec" src="images/images (2).jpeg">
-            <p>Elden Ring</p>
-        </div>
+
     </div>
 </body>
 <script>
@@ -268,14 +244,37 @@
             sidebar.classList.remove('show');
         });
 
-        const window = window.location
-        const params = window.URLParams()
-        const categoria = params.get('categoria')
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+        const categoria = params.get('categoria');
 
         document.getElementById('titulo').innerText = "Você pesquisou: " + categoria
         fetch('http://localhost:3000/jogos/categorias/' + categoria, {
-
         })
+            .then(response => response.json())
+            .then(jogosBackend => {
+                const listaJogos = document.getElementById('recomendados');
+                for (i = 0; i < jogosBackend.length; i++) {
+                    const jogo = jogosBackend[i];
+                    const cartaoJogo = document.createElement('div');
+                    cartaoJogo.className = 'cartao';
+
+                    // Verifica se o preço é null, se for, define como "Grátis"
+                    const precoFormatado = jogo.preco === null ? 'Grátis' : `R$ ${parseFloat(jogo.preco).toFixed(2)}`;
+
+                    cartaoJogo.innerHTML = `
+                    <img class="imgrec" src="${jogo.img}" alt="${jogo.nome}">
+                    <p>${jogo.nome}</p>
+                    <span class="nomepreco">${precoFormatado}</span>
+                `;
+
+                    listaJogos.appendChild(cartaoJogo);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar produtos:', error);
+            });
+    })
     });
 </script>
 
