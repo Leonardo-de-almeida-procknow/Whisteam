@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar</title>
     <style>
-        *{
+        * {
             padding: 0;
             margin: 0;
         }
-       body{
-        background: rgb(255,255,255);
-        background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(82,82,82,1) 100%);
-        width: 100lvw;
-        height: 100lvh;
-       }
-       div.menu {
+
+        body {
+            background: rgb(255, 255, 255);
+            background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(82, 82, 82, 1) 100%);
+            width: 100lvw;
+            height: 100lvh;
+        }
+
+        div.menu {
             display: flex;
             justify-content: space-between;
             padding: 0.2%;
             width: 100vw;
-       }
-    .menulogcreat{
-        margin: auto;
+        }
+
+        .menulogcreat {
+            margin: auto;
             margin-top: 10%;
-            background-color: rgb(82, 82, 82,0.9);
+            background-color: rgb(82, 82, 82, 0.9);
             width: 23%;
             height: 35%;
             border-radius: 15px;
-    }
-    
-    .criar{
-        margin: 1%;
-        
-    }
-    a {
+        }
+
+        .criar {
+            margin: 1%;
+
+        }
+
+        a {
             color: blue;
         }
-        input{
+
+        input {
             background-color: #000;
             border-radius: 15px;
             width: 100%;
             height: 20px;
             color: #fff;
-            
+
         }
-    /* Estilo do ícone de menu */
-    .menu-toggle {
+
+        /* Estilo do ícone de menu */
+        .menu-toggle {
             position: absolute;
             top: 8px;
             right: 20px;
@@ -55,18 +62,22 @@
         .menu-toggle img {
             cursor: pointer;
         }
+
         /* Estilo do menu lateral */
         .sidebar {
             height: 100%;
-            width: 250px; /* Largura do menu lateral */
+            width: 250px;
+            /* Largura do menu lateral */
             position: fixed;
             top: 0;
-            right: -290px; /* Inicialmente fora da tela */
+            right: -290px;
+            /* Inicialmente fora da tela */
             background-color: #000000;
             color: white;
-            transition: right 0.3s ease; /* Transição suave */
+            transition: right 0.3s ease;
+            /* Transição suave */
             padding: 20px;
-            z-index:    1;
+            z-index: 1;
             font-family: "BebasNeueCyrillic";
             src: url('BebasNeueCyrillic.ttf');
             font-weight: lighter;
@@ -113,10 +124,12 @@
         }
     </style>
 </head>
+
 <body>
-    
+
     <div class="sidebar" id="sidebar">
-        <button class="close-btn" id="closeBtn"><img style="margin-right: 25px;" src="images/menu-hamburguer (2).png"></button>
+        <button class="close-btn" id="closeBtn"><img style="margin-right: 25px;"
+                src="images/menu-hamburguer (2).png"></button>
         <h1>Menu Lateral</h1>
         <ul>
             <h2>Usuário</h2>
@@ -149,7 +162,7 @@
         </div>
         <img style="width:40px; height:40px; margin-right: 1430px;margin-top: 15px;" src="images/lupa.png">
     </div>
-    <div>  
+    <div>
         <h2 style="text-align: center;font-family: arial narrow;">Criar conta/Logins</h2>
     </div>
     <div class="menulogcreat">
@@ -158,25 +171,72 @@
             <p style="color: #a7a3a3;font-family: arial narrow;">EMAIL:</p><input type="text" id="email">
             <p style="color: #a7a3a3;font-family: arial narrow;">NOME DE USUARIO:</p><input type="text" id="nome">
             <p style="color: #a7a3a3;font-family: arial narrow;">SENHA:</p><input type="text" id="senha">
-            <p style="color: #a7a3a3;font-family: arial narrow;">DATA DE NASCIMENTO:</p><input type="date" id="data_d_ncm" placeholder="coloque sua data de nascimento">
-            <button style="border-radius: 15px;height: 20px;background-color: #000;color: #fff;width: 50px;margin-left: 40%;font-family: arial narrow;">criar</button>
+            <p style="color: #a7a3a3;font-family: arial narrow;">DATA DE NASCIMENTO:</p><input type="date"
+                id="data_d_ncm" placeholder="coloque sua data de nascimento">
+            <button onclick="cadastrarCliente()"
+                style="border-radius: 15px;height: 20px;background-color: #000;color: #fff;width: 50px;margin-left: 40%;font-family: arial narrow;">criar</button>
             <p style="font-family: arial narrow;">caso você ja tenha uma conta:<a href="Logar.html">CLIQUE AQUI!</a></p>
         </div>
     </div>
 </body>
-<script>document.addEventListener('DOMContentLoaded', function() {
-    const menuIcon = document.getElementById('menuIcon');
-    const sidebar = document.getElementById('sidebar');
-    const closeBtn = document.getElementById('closeBtn');
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const menuIcon = document.getElementById('menuIcon');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('closeBtn');
 
-    menuIcon.addEventListener('click', function() {
-        sidebar.classList.add('show');
+        menuIcon.addEventListener('click', function () {
+            sidebar.classList.add('show');
+        });
+
+        closeBtn.addEventListener('click', function () {
+            sidebar.classList.remove('show');
+        });
     });
 
-    closeBtn.addEventListener('click', function() {
-        sidebar.classList.remove('show');
-    });
-});
+    
+    function cadastrarCliente() {
+            // Captura os valores dos inputs
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const data_d_ncm = document.getElementById('data_d_ncm').value;
+
+            // Cria o objeto com os dados
+            const pessoa = {
+                nome: nome,
+                email: email,
+                senha: senha,
+                data_d_ncm: data_d_ncm // Converte a idade para número
+            };
+
+            // Faz a solicitação POST para o backend
+            fetch('http://localhost:3000/clientes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(pessoa)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Erro ao cadastrar a pessoa');
+                })
+                .then(data => {
+                    console.log('Pessoa cadastrada com sucesso:', data);
+                    // Limpar os campos de entrada após o envio
+                    document.getElementById('nome').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('senha').value = '';
+                    document.getElementById('data_d_ncm').value = '';
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+        }
+    
 </script>
-</html>
 
+</html>

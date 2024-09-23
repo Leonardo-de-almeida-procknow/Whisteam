@@ -17,4 +17,6 @@ router.put('/jogos/:id', jogoController.updateJogo);
 // Rota para deletar um jogo
 router.delete('/jogos/:id', jogoController.deleteJogo);
 
+router.get('/jogos/categoria/:categoria', jogoController.getJogoBycategoria);
+
 module.exports = router;

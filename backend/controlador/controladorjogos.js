@@ -64,6 +64,21 @@ const JogosController = {
         } catch (error) {
             res.status(500).send(error.message);
         }
+    },
+
+    getJogoBycategoria: async (req, res) => {
+        try {
+            const jogos = await Jogo.findAll({
+                where: {
+                    categoria: req.params.categoria
+                }});
+            if (!jogos) {
+                return res.status(404).send('Jogos não encontrado');
+            }
+            res.json(jogos);
+        } catch (error) {
+            res.status(500).send(error.message);
+        }
     }
 }
 module.exports = JogosController;
