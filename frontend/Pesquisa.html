@@ -198,23 +198,21 @@
             <li><a href="Perfil.html">Perfil</a></li>
 
             <h2>Categorias</h2>
-            <li><a href="#">Ação</a></li>
-            <li><a href="#">Aventura</a></li>
-            <li><a href="#">RPG</a></li>
-            <li><a href="#">Estratégia</a></li>
-            <li><a href="#">Simulação</a></li>
-            <li><a href="#">Esportes</a></li>
-            <li><a href="#">Corrida</a></li>
-            <li><a href="#">Puzzle</a></li>
-            <li><a href="#">Survival Horror</a></li>
-            <li><a href="#">Plataforma</a></li>
-            <li><a href="#">MOBA</a></li>
-            <li><a href="#">Battle Royale</a></li>
-            <li><a href="#">Ritmo</a></li>
-            <li><a href="#">Visual Novel</a></li>
-
-            <h2>pesquisar</h2>
-            <input>
+            <li><a href="pesquisa.html?categoria=Ação" >Ação</a></li>
+            <li><a href="pesquisa.html?categoria=Aventura" >Aventura</a></li>
+            <li><a href="pesquisa.html?categoria=RPG" >RPG</a></li>
+            <li><a href="pesquisa.html?categoria=Estratégia" >Estratégia</a></li>
+            <li><a href="pesquisa.html?categoria=Simulação" >Simulação</a></li>
+            <li><a href="pesquisa.html?categoria=Esportes" >Esportes</a></li>
+            <li><a href="pesquisa.html?categoria=Corrida" >Corrida</a></li>
+            <li><a href="pesquisa.html?categoria=Puzzle" >Puzzle</a></li>
+            <li><a href="pesquisa.html?categoria=Survival Horror" >Survival Horror</a></li>
+            <li><a href="pesquisa.html?categoria=Plataforma" >Plataforma</a></li>
+            <li><a href="pesquisa.html?categoria=MOBA" >MOBA</a></li>
+            <li><a href="pesquisa.html?categoria=Battle Royale" >Battle Royale</a></li>
+            <li><a href="pesquisa.html?categoria=Ritmo" >Ritmo</a></li>
+            <li><a href="pesquisa.html?categoria=Visual Novel" >Visual Novel</a></li>
+            
         </ul>
     </div>
     <div class="menu" style="background-color: black;position: relative; ">
@@ -226,56 +224,63 @@
     <div class="pesquisa">
         <h2 id="titulo">Você pesquisou:</h2>
     </div>
-    <div class="resultado">
+    <div class="resultado" id="resultado">
 
     </div>
 </body>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const menuIcon = document.getElementById('menuIcon');
-        const sidebar = document.getElementById('sidebar');
-        const closeBtn = document.getElementById('closeBtn');
+document.addEventListener('DOMContentLoaded', function () {
+    const menuIcon = document.getElementById('menuIcon');
+    const sidebar = document.getElementById('sidebar');
+    const closeBtn = document.getElementById('closeBtn');
+    
+    menuIcon.addEventListener('click', function () {
+        sidebar.classList.add('show');
+    });
 
-        menuIcon.addEventListener('click', function () {
-            sidebar.classList.add('show');
-        });
+    closeBtn.addEventListener('click', function () {
+        sidebar.classList.remove('show');
+    });
 
-        closeBtn.addEventListener('click', function () {
-            sidebar.classList.remove('show');
-        });
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    const categoria = params.get('categoria');
 
-        const url = new URL(window.location.href);
-        const params = new URLSearchParams(url.search);
-        const categoria = params.get('categoria');
+    document.getElementById('titulo').textContent = "Você pesquisou: " + categoria;
 
-        document.getElementById('titulo').innerText = "Você pesquisou: " + categoria
-        fetch('http://localhost:3000/jogos/categorias/' + categoria, {
-        })
-            .then(response => response.json())
-            .then(jogosBackend => {
-                const listaJogos = document.getElementById('recomendados');
-                for (i = 0; i < jogosBackend.length; i++) {
-                    const jogo = jogosBackend[i];
-                    const cartaoJogo = document.createElement('div');
-                    cartaoJogo.className = 'cartao';
+    // Função para buscar os jogos por categoria
+    async function getJogoByCategoria(categoria) {
+        try {
+            const response = await fetch(`http://localhost:3000/jogos/categorias/${categoria}`);
+            const jogosBackend = await response.json();
+            const listaJogos = document.getElementById('resultado');
 
-                    // Verifica se o preço é null, se for, define como "Grátis"
-                    const precoFormatado = jogo.preco === null ? 'Grátis' : `R$ ${parseFloat(jogo.preco).toFixed(2)}`;
+            // Limpa a lista antes de adicionar novos jogos
+            listaJogos.innerHTML = '';
 
-                    cartaoJogo.innerHTML = `
+            jogosBackend.forEach(jogo => {
+                const cartaoJogo = document.createElement('div');
+                cartaoJogo.className = 'cartao';
+
+                // Verifica se o preço é null, se for, define como "Grátis"
+                const precoFormatado = jogo.preco === null ? 'Grátis' : `R$ ${parseFloat(jogo.preco).toFixed(2)}`;
+
+                cartaoJogo.innerHTML = `
                     <img class="imgrec" src="${jogo.img}" alt="${jogo.nome}">
                     <p>${jogo.nome}</p>
                     <span class="nomepreco">${precoFormatado}</span>
                 `;
 
-                    listaJogos.appendChild(cartaoJogo);
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao buscar produtos:', error);
+                listaJogos.appendChild(cartaoJogo);
             });
-    })
-    });
+        } catch (error) {
+            console.error('Erro ao buscar produtos:', error);
+        }
+    }
+
+    getJogoByCategoria(categoria)
+});
+
 </script>
 
 </html>

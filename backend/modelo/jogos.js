@@ -30,6 +30,9 @@ Jogo.init({
     dt_lc: {
         type: DataTypes.DATE
     },
+    categoria: {
+        type: DataTypes.STRING
+    },
     img: {
         type: DataTypes.TEXT
     }
