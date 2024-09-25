@@ -1,52 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        @font-face {
+            font-family: "BebasNeueCyrillic";
+            src: url('BebasNeueCyrillic.ttf')
+        }
+
         * {
             padding: 0;
             margin: 0;
+            box-sizing: border-box;
         }
-
         body {
-            background: rgb(255, 255, 255);
             background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(82, 82, 82, 1) 100%);
-            width: 100lvw;
-            height: 100lvh;
+            width: 100vw;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            overflow-y: scroll;
         }
-
-        div.menu {
+        .menu {
             display: flex;
             justify-content: space-between;
             padding: 0.2%;
+            width: 100vw;
         }
-
-        .menulogcreat {
-            margin: auto;
-            margin-top: 10%;
-            background-color: rgb(82, 82, 82,0.9);
-            width: 400px;
-            height: 18%;
-            border-radius: 15px;
-        }
-        .logar{
-            margin: 1%;
-        }
-        a {
-            color: blue;
-        }
-
-        input{
-            background-color: #000;
-            border-radius: 15px;
-            width: 100%;
-            height: 20px;
-            color: #fff;
-            
-        }
+        
         /* Estilo do ícone de menu */
         .menu-toggle {
             position: absolute;
@@ -57,13 +41,14 @@
         .menu-toggle img {
             cursor: pointer;
         }
+
         /* Estilo do menu lateral */
         .sidebar {
             height: 100%;
             width: 250px; /* Largura do menu lateral */
             position: fixed;
             top: 0;
-            right: -290px; /* Inicialmente fora da tela */
+            right: -250px; /* Inicialmente fora da tela */
             background-color: #000000;
             color: white;
             transition: right 0.3s ease; /* Transição suave */
@@ -113,13 +98,14 @@
         .sidebar.show {
             right: 0;
         }
+
     </style>
 </head>
 
 <body>
-
     <div class="sidebar" id="sidebar">
-        <button class="close-btn" id="closeBtn"><img style="margin-right: 25px;" src="images/menu-hamburguer (2).png"></button>
+        <button class="close-btn" id="closeBtn"><img style="margin-right: 25px;"
+                src="images/menu-hamburguer (2).png"></button>
         <h1>Menu Lateral</h1>
         <ul>
             <h2>Usuário</h2>
@@ -150,22 +136,8 @@
         <div class="menu-toggle">
             <img style="margin-right: 25px;" src="images/menu-hamburguer (2).png" alt="Menu" id="menuIcon">
         </div>
-        <img style="width:40px; height:40px; margin-right: 1430px;margin-top: 15px;" src="images/lupa.png">
     </div>
     <div>
-        <h2 style="text-align: center;font-family: arial narrow;">Criar conta/Login</h2>
-    </div>
-    <div class="menulogcreat">
-
-        <div class="logar">
-            <h3 style="margin-left: 160PX;font-family: arial narrow;">ENTRAR</h3>
-            <p style="color: #a7a3a3;font-family: arial narrow;">EMAIL:</p><input type="text" id="email">
-            <p style="color: #a7a3a3;font-family: arial narrow;">SENHA:</p><input type="password" id="senha">
-            <button style="border-radius: 15px;height: 20px;background-color: #000;color: #fff;width: 50px;margin-left: 40%;font-family: arial narrow;" onclick="Login()">entrar</button>
-            <!-- <p>caso você n tenha uma conta</p><a href="http://127.0.0.1:5500/frontend/registro.html"><button>criar</button></a> -->
-            <p style="font-family: arial narrow;">caso você n tenha uma conta <a href="Registrar.html">CLIQUE AQUI</a></p>
-        </div>
-    </div>
 </body>
 <script>document.addEventListener('DOMContentLoaded', function() {
     const menuIcon = document.getElementById('menuIcon');
@@ -180,36 +152,5 @@
         sidebar.classList.remove('show');
     });
 });
-
-function Login() {
-            // Captura os valores dos inputs
-            const email = document.getElementById('email').value;
-            const senha = document.getElementById('senha').value;
-
-            // Cria o objeto com os dados
-            const pessoa = {
-                email: email,
-                senha: senha,
-            };
-
-            // Faz a solicitação POST para o backend
-            fetch('http://localhost:3000/clientes/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(pessoa)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.href='Pagina_Inicial.html'
-                    }else
-                    alert('algo esta de errado tente novamente')
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                });
-        }
-    
 </script>
 </html>

@@ -170,7 +170,7 @@
             <h3 style="margin-left: 160PX;font-family: arial narrow;">CRIAR CONTA</h3>
             <p style="color: #a7a3a3;font-family: arial narrow;">EMAIL:</p><input type="text" id="email">
             <p style="color: #a7a3a3;font-family: arial narrow;">NOME DE USUARIO:</p><input type="text" id="nome">
-            <p style="color: #a7a3a3;font-family: arial narrow;">SENHA:</p><input type="text" id="senha">
+            <p style="color: #a7a3a3;font-family: arial narrow;">SENHA:</p><input type="password" id="senha">
             <p style="color: #a7a3a3;font-family: arial narrow;">DATA DE NASCIMENTO:</p><input type="date"
                 id="data_d_ncm" placeholder="coloque sua data de nascimento">
             <button onclick="cadastrarCliente()"
@@ -196,47 +196,50 @@
 
     
     function cadastrarCliente() {
-            // Captura os valores dos inputs
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const senha = document.getElementById('senha').value;
-            const data_d_ncm = document.getElementById('data_d_ncm').value;
+    // Captura os valores dos inputs
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+    const data_d_ncm = document.getElementById('data_d_ncm').value;
 
-            // Cria o objeto com os dados
-            const pessoa = {
-                nome: nome,
-                email: email,
-                senha: senha,
-                data_d_ncm: data_d_ncm // Converte a idade para número
-            };
+    // Cria o objeto com os dados
+    const pessoa = {
+        nome: nome,
+        email: email,
+        senha: senha,
+        data_d_ncm: data_d_ncm
+    };
 
-            // Faz a solicitação POST para o backend
-            fetch('http://localhost:3000/clientes', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(pessoa)
-            })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error('Erro ao cadastrar a pessoa');
-                })
-                .then(data => {
-                    console.log('Pessoa cadastrada com sucesso:', data);
-                    // Limpar os campos de entrada após o envio
-                    document.getElementById('nome').value = '';
-                    document.getElementById('email').value = '';
-                    document.getElementById('senha').value = '';
-                    document.getElementById('data_d_ncm').value = '';
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                });
+    // Faz a solicitação POST para o backend
+    fetch('http://localhost:3000/clientes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(pessoa)
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
         }
-    
+        throw new Error('Erro ao cadastrar a pessoa');
+    })
+    .then(data => {
+        console.log('Pessoa cadastrada com sucesso:', data);
+        
+        // Limpar os campos de entrada após o envio
+        document.getElementById('nome').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('senha').value = '';
+        document.getElementById('data_d_ncm').value = '';
+
+        // Redirecionar para a tela de login
+        window.location.href = 'Logar.html'; // Substitua pelo caminho correto
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+}
 </script>
 
 </html>
