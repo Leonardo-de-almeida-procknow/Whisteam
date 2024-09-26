@@ -9,7 +9,7 @@ router.post('/jogos', jogoController.createJogo);
 router.get('/jogos', jogoController.getAllJogos);
 
 // Rota para obter um jogo pelo ID
-router.get('/jogos/:id', jogoController.getJogoById);
+router.get('/jogos/:nome', jogoController.getJogoByNome);
 
 // Rota para atualizar um jogo
 router.put('/jogos/:id', jogoController.updateJogo);

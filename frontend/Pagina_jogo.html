@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Página jogo</title>
     <style>
         @font-face {
             font-family: "BebasNeueCyrillic";
@@ -15,56 +16,65 @@
             margin: 0;
             box-sizing: border-box;
         }
+
         body {
             background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(82, 82, 82, 1) 100%);
+            color: white;
             width: 100vw;
             height: 100vh;
             background-repeat: no-repeat;
             background-attachment: fixed;
             overflow-x: hidden;
             overflow-y: scroll;
+            font-family: "BebasNeueCyrillic", sans-serif;
         }
+
+        /* Menu superior */
         .menu {
             display: flex;
             justify-content: space-between;
-            padding: 0.2%;
+            padding: 1%;
             width: 100vw;
+            background-color: #000;
+            position: relative;
         }
-        
-        /* Estilo do ícone de menu */
+
+        .menu a img {
+            height: 50px;
+        }
+
+        /* Ícone de menu */
         .menu-toggle {
-            position: absolute;
-            top: 8px;
-            right: 20px;
+            cursor: pointer;
         }
 
         .menu-toggle img {
-            cursor: pointer;
+            height: 40px;
         }
 
         /* Estilo do menu lateral */
         .sidebar {
             height: 100%;
-            width: 250px; /* Largura do menu lateral */
+            width: 250px;
             position: fixed;
             top: 0;
-            right: -250px; /* Inicialmente fora da tela */
-            background-color: #000000;
+            right: -250px;
+            background-color: #000;
             color: white;
-            transition: right 0.3s ease; /* Transição suave */
+            transition: right 0.3s ease;
             padding: 20px;
-            z-index:    1;
+            z-index: 1;
             font-family: "BebasNeueCyrillic";
-            src: url('BebasNeueCyrillic.ttf');
-            font-weight: lighter;
         }
 
         .sidebar h1 {
             margin-top: 60px;
+            font-size: 24px;
         }
 
         .sidebar h2 {
             margin-top: 30px;
+            font-size: 18px;
         }
 
         .sidebar ul {
@@ -79,6 +89,7 @@
         .sidebar ul li a {
             color: white;
             text-decoration: none;
+            font-size: 16px;
         }
 
         .sidebar .close-btn {
@@ -90,8 +101,6 @@
             font-size: 30px;
             color: white;
             cursor: pointer;
-            margin-left: 60%;
-            z-index: 2;
         }
 
         /* Mostrar o menu lateral */
@@ -99,10 +108,68 @@
             right: 0;
         }
 
+        /* Layout principal do produto */
+        .product-container {
+            display: flex;
+            padding: 2%;
+        }
+
+        /* Área de imagem/vídeo */
+        .product-media {
+            flex: 2;
+            margin-right: 20px;
+        }
+
+        .product-media img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        /* Área de informações do produto */
+        .detalhe_produto {
+            flex: 3;
+            background-color: #525252;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .detalhe_produto h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .detalhe_produto p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        /* Botão estilo Steam */
+        .btn {
+            background-color: #727272;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 4px;
+            font-family: "BebasNeueCyrillic";
+        }
+
+        .btn:hover {
+            background-color: #4da3d2;
+        }
     </style>
 </head>
 
 <body>
+    <div class="menu">
+        <a href="Pagina_Inicial.html"><img src="images/Capturar.JPG" alt="Logo"></a>
+        <div class="menu-toggle">
+            <img src="images/menu-hamburguer (2).png" alt="Menu" id="menuIcon">
+        </div>
+    </div>
+
     <div class="sidebar" id="sidebar">
         <button class="close-btn" id="closeBtn"><img style="margin-right: 25px;"
                 src="images/menu-hamburguer (2).png"></button>
@@ -112,45 +179,75 @@
             <li><a href="Logar.html">Logar/Registrar</a></li>
             <li><a href="biblioteca.html">Biblioteca</a></li>
             <li><a href="Perfil.html">Perfil</a></li>
-
             <h2>Categorias</h2>
-            <li><a href="pesquisa.html?categoria=Ação" >Ação</a></li>
-            <li><a href="pesquisa.html?categoria=Aventura" >Aventura</a></li>
-            <li><a href="pesquisa.html?categoria=RPG" >RPG</a></li>
-            <li><a href="pesquisa.html?categoria=Estratégia" >Estratégia</a></li>
-            <li><a href="pesquisa.html?categoria=Simulação" >Simulação</a></li>
-            <li><a href="pesquisa.html?categoria=Esportes" >Esportes</a></li>
-            <li><a href="pesquisa.html?categoria=Corrida" >Corrida</a></li>
-            <li><a href="pesquisa.html?categoria=Puzzle" >Puzzle</a></li>
-            <li><a href="pesquisa.html?categoria=Survival Horror" >Survival Horror</a></li>
-            <li><a href="pesquisa.html?categoria=Plataforma" >Plataforma</a></li>
-            <li><a href="pesquisa.html?categoria=MOBA" >MOBA</a></li>
-            <li><a href="pesquisa.html?categoria=Battle Royale" >Battle Royale</a></li>
-            <li><a href="pesquisa.html?categoria=Ritmo" >Ritmo</a></li>
-            <li><a href="pesquisa.html?categoria=Visual Novel" >Visual Novel</a></li>
-
+            <li><a href="pesquisa.html?categoria=Ação">Ação</a></li>
+            <li><a href="pesquisa.html?categoria=Aventura">Aventura</a></li>
+            <li><a href="pesquisa.html?categoria=RPG">RPG</a></li>
+            <li><a href="pesquisa.html?categoria=Estratégia">Estratégia</a></li>
+            <li><a href="pesquisa.html?categoria=Simulação">Simulação</a></li>
+            <li><a href="pesquisa.html?categoria=Esportes">Esportes</a></li>
+            <li><a href="pesquisa.html?categoria=Corrida">Corrida</a></li>
+            <li><a href="pesquisa.html?categoria=Puzzle">Puzzle</a></li>
+            <li><a href="pesquisa.html?categoria=Survival Horror">Survival Horror</a></li>
+            <li><a href="pesquisa.html?categoria=Plataforma">Plataforma</a></li>
+            <li><a href="pesquisa.html?categoria=MOBA">MOBA</a></li>
+            <li><a href="pesquisa.html?categoria=Battle Royale">Battle Royale</a></li>
+            <li><a href="pesquisa.html?categoria=Ritmo">Ritmo</a></li>
+            <li><a href="pesquisa.html?categoria=Visual Novel">Visual Novel</a></li>
         </ul>
     </div>
-    <div class="menu" style="background-color: black;position: relative; ">
-        <a href="Pagina_Inicial.html"><img src="images/Capturar.JPG"></a>
-        <div class="menu-toggle">
-            <img style="margin-right: 25px;" src="images/menu-hamburguer (2).png" alt="Menu" id="menuIcon">
+
+    <!-- Área do Produto -->
+    <div class="product-container">
+        <!-- Imagem ou vídeo do produto -->
+        <div class="product-media">
+            <img src="images/game-example.jpg" alt="Imagem do Produto">
         </div>
+
+        <!-- Detalhes do Produto -->
+        
     </div>
-    <div>
+
+    <script>
+        // Parte do menu
+        const menuIcon = document.getElementById('menuIcon');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('closeBtn');
+
+        menuIcon.addEventListener('click', function () {
+            sidebar.classList.add('show');
+        });
+
+        closeBtn.addEventListener('click', function () {
+            sidebar.classList.remove('show');
+        });
+
+        // Parte do jogo
+        const nomeJogo = localStorage.getItem('jogo')
+        fetch('http://localhost:3000/jogos/' + nomeJogo)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+            })
+            .then(jogo => {
+                const Jogo_Pagina = document.createElement('div');
+                Jogo_Pagina.className = 'detalhe_produto';
+
+                // Verifica se o preço é null, se for, define como "Grátis"
+                const precoFormatado = jogo.preco === null ? 'Grátis' : `R$ ${parseFloat(jogo.preco).toFixed(2)}`;
+
+                Jogo_Pagina.innerHTML = `
+                <h1 >${jogo.nome}</h1>
+                <p >'${jogo.desc}'</p>
+                <p >categoria:'${jogo.categoria}'</p>
+                <p >Desenvolvedora:'${jogo.cria_destr}'</p>
+                <p >'${jogo.dt_lc}'</p>
+                <p >"$"'${jogo.preco}'</p>
+                <a class="btn">Comprar</a>
+                `;
+            })
+    </script>
 </body>
-<script>document.addEventListener('DOMContentLoaded', function() {
-    const menuIcon = document.getElementById('menuIcon');
-    const sidebar = document.getElementById('sidebar');
-    const closeBtn = document.getElementById('closeBtn');
 
-    menuIcon.addEventListener('click', function() {
-        sidebar.classList.add('show');
-    });
-
-    closeBtn.addEventListener('click', function() {
-        sidebar.classList.remove('show');
-    });
-});
-</script>
 </html>

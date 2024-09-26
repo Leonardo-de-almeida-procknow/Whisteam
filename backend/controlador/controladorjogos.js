@@ -19,11 +19,15 @@ const JogosController = {
         }
     },
 
-    getJogoById: async (req, res) => {
+    getJogoByNome: async (req, res) => {
         try {
-            const jogo = await Jogo.findByPk(req.params.id);
+            const jogo = await Jogo.findOne({
+                where: {
+                    nome: req.params.nome
+                }
+            });
             if (!jogo) {
-                return res.status(404).send('Jogos não encontrado');
+                return res.status(404).send('Jogo não encontrado');
             }
             res.json(jogo);
         } catch (error) {
@@ -71,7 +75,8 @@ const JogosController = {
             const jogos = await Jogo.findAll({
                 where: {
                     categoria: req.params.categoria
-                }});
+                }
+            });
             if (!jogos) {
                 return res.status(404).send('Jogos não encontrado');
             }

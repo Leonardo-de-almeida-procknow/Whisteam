@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const precoFormatado = jogo.preco === null ? 'Grátis' : `R$ ${parseFloat(jogo.preco).toFixed(2)}`;
 
                 cartaoJogo.innerHTML = `
-                    <button style="border-radius: 15px;"><img class="imgrec" src="${jogo.img}" alt="${jogo.nome}"></button>
+                    <button style="border-radius: 15px;" onclick="pagina_jogo('${jogo.nome}')"><img class="imgrec" src="${jogo.img}" alt="${jogo.nome}"></button>
                     <p>${jogo.nome}</p>
                     <span class="nomepreco">${precoFormatado}</span>
                 `;
@@ -336,7 +336,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 });
-
+function pagina_jogo(nome) {
+    localStorage.setItem("jogo",nome)
+    window.location.href="Pagina_jogo.html"
+}
 </script>
 
 </html>
