@@ -33,23 +33,16 @@
         .menu {
             display: flex;
             justify-content: space-between;
-            padding: 1%;
             width: 100vw;
             background-color: #000;
             position: relative;
         }
-
-        .menu a img {
-            height: 50px;
-        }
-
         /* Ícone de menu */
         .menu-toggle {
-            cursor: pointer;
-        }
-
-        .menu-toggle img {
-            height: 40px;
+            position: absolute;
+            top: 8px;
+            right: 50px;
+            
         }
 
         /* Estilo do menu lateral */
@@ -101,6 +94,7 @@
             font-size: 30px;
             color: white;
             cursor: pointer;
+            margin-left: 60%;
         }
 
         /* Mostrar o menu lateral */
@@ -112,25 +106,24 @@
         .product-container {
             display: flex;
             padding: 2%;
+            flex-direction: column;
         }
 
         /* Área de imagem/vídeo */
         .product-media {
-            flex: 2;
+            flex: 1;
             margin-right: 20px;
         }
 
         .product-media img {
-            width: 100%;
+            width: 50%;
             border-radius: 8px;
         }
 
         /* Área de informações do produto */
         .detalhe_produto {
-            flex: 3;
+            flex: 2;
             background-color: #525252;
-            padding: 20px;
-            border-radius: 8px;
         }
 
         .detalhe_produto h1 {
@@ -154,10 +147,11 @@
             font-size: 18px;
             border-radius: 4px;
             font-family: "BebasNeueCyrillic";
+            margin-right: 94.9%;
         }
 
         .btn:hover {
-            background-color: #4da3d2;
+            background-color: #35393b;
         }
     </style>
 </head>
@@ -197,15 +191,8 @@
         </ul>
     </div>
 
-    <!-- Área do Produto -->
-    <div class="product-container">
-        <!-- Imagem ou vídeo do produto -->
-        <div class="product-media">
-            <img src="images/game-example.jpg" alt="Imagem do Produto">
-        </div>
+    <div class="jogo" id="jogo">
 
-        <!-- Detalhes do Produto -->
-        
     </div>
 
     <script>
@@ -238,14 +225,21 @@
                 const precoFormatado = jogo.preco === null ? 'Grátis' : `R$ ${parseFloat(jogo.preco).toFixed(2)}`;
 
                 Jogo_Pagina.innerHTML = `
+                <div class="product-container">
+                    <div class="product-media">
+                        <img src="${jogo.img}" alt="Imagem do Produto">
+                    </div>
                 <h1 >${jogo.nome}</h1>
-                <p >'${jogo.desc}'</p>
-                <p >categoria:'${jogo.categoria}'</p>
-                <p >Desenvolvedora:'${jogo.cria_destr}'</p>
-                <p >'${jogo.dt_lc}'</p>
-                <p >"$"'${jogo.preco}'</p>
+                <p >${jogo.desc}</p>
+                <p >categoria : ${jogo.categoria}</p>
+                <p >Desenvolvedora : ${jogo.cria_destr}</p>
+                <p >${jogo.dt_lc}</p>
+                <p >${precoFormatado}</p>
                 <a class="btn">Comprar</a>
+                </div>
                 `;
+
+                document.getElementById('jogo').append(Jogo_Pagina)
             })
     </script>
 </body>
