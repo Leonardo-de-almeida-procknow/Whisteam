@@ -14,10 +14,42 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Copiando dados para a tabela whisteambd.clientes: ~2 rows (aproximadamente)
+
+-- Copiando estrutura do banco de dados para whisteambd
+CREATE DATABASE IF NOT EXISTS `whisteambd` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `whisteambd`;
+
+-- Copiando estrutura para tabela whisteambd.clientes
+CREATE TABLE IF NOT EXISTS `clientes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` text NOT NULL,
+  `senha` text NOT NULL,
+  `email` text NOT NULL,
+  `telefone` varchar(50) DEFAULT NULL,
+  `data_d_ncm` date NOT NULL,
+  `endereco` text DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Copiando dados para a tabela whisteambd.clientes: ~1 rows (aproximadamente)
 INSERT INTO `clientes` (`id`, `nome`, `senha`, `email`, `telefone`, `data_d_ncm`, `endereco`) VALUES
 	(1, 'Le00zin', 'Fuckrussians!', 'gamerprock@gmail.com', NULL, '2007-06-03', NULL),
 	(9, 'LEONARDO DE ALMEIDA PROCKNOW', 'asdaw', 'gamerprock@gmail.com', NULL, '2009-03-22', NULL);
+
+-- Copiando estrutura para tabela whisteambd.jogos
+CREATE TABLE IF NOT EXISTS `jogos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` text NOT NULL,
+  `cria_destr` text NOT NULL,
+  `desc` longtext NOT NULL,
+  `avali` decimal(20,6) NOT NULL,
+  `preco` decimal(20,6) DEFAULT 0.000000,
+  `ida_rec` text DEFAULT NULL,
+  `dt_lc` date NOT NULL,
+  `categoria` varchar(50) NOT NULL DEFAULT '',
+  `img` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Copiando dados para a tabela whisteambd.jogos: ~10 rows (aproximadamente)
 INSERT INTO `jogos` (`id`, `nome`, `cria_destr`, `desc`, `avali`, `preco`, `ida_rec`, `dt_lc`, `categoria`, `img`) VALUES
